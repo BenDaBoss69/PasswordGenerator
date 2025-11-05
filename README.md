@@ -1,12 +1,77 @@
-# Password Generator python application
+# Random Password Generator
 
-## How to run
-- To run the application please ensure you have tkinter downloaded you can do this by running ```pip install tk```
-- To verify installation you can make a program with the following. And run it
+A simple and secure-by-design password generator built using **Python** and the **Tkinter** GUI library. This application creates memorable passwords by combining two unique random nouns, a three-digit number, and a special character.
+
+---
+
+## Features
+
+* **Memorable Passwords:** Generates passwords using a dictionary of common nouns from `noun_list_1000.txt`, making them easier to remember while maintaining complexity.
+* **Simple GUI:** Easy-to-use interface built with **Tkinter**.
+* **One-Click Generation:** Quickly generate a new password with the "Generate Password" button.
+* **Copy to Clipboard:** Instantly copy the generated password to your clipboard using the "Copy to Clipboard" button.
+* **Unique Noun Selection:** Ensures the two selected nouns are not duplicates in the generated password.
+
+---
+
+## Prerequisites
+
+To run this application, you will need **Python** (version 3.x is recommended). The required GUI library, **Tkinter**, is typically bundled with standard Python installations.
+
+If you encounter issues, you may need to ensure Tkinter is installed. You can attempt to install it by running:
+
+```bash
+pip install tk
 ```
+
+**Verification (Optional):** You can verify your Tkinter installation by running a small Python script:
+
+```python
 import tkinter
 tkinter._test()
 ```
-- Finally to run the program
-    - You can run using VSCode run
-    - You can run from terminal ensure the path is correct for the password generator folder. Then simply run ```python password-generator.py```
+
+If a small test window appears, Tkinter is correctly installed.
+
+---
+
+## How to Run
+
+1.  **Navigate to the Directory:** Open your terminal or command prompt and change the directory to the location of the `password-generator.py` file.
+
+    ```bash
+    cd path/to/PasswordGenerator/
+    ```
+
+2.  **Execute the Script:** Run the application using the Python interpreter:
+
+    ```bash
+    python password-generator.py
+    ```
+
+    The graphical interface should open, ready for use.
+
+---
+
+## Password Generation Logic
+
+The `genPassword` function constructs a password by following this formula:
+
+$$\text{Password} = \text{Noun}_1 + \text{Noun}_2 + \text{Number} + \text{SpecialCharacter}$$
+
+1.  **Two Unique Nouns:** It randomly selects two unique nouns from the `noun_list_1000.txt` file. The script ensures the two selected nouns are not duplicates.
+2.  **Three-Digit Number:** A random number between **100** and **999** is generated.
+3.  **Special Character:** A random special character is chosen from the list: `!`, `@`, `#`, `$`, `%`, `^`, `&`, `*`, `-`, `_`.
+
+**Example Generated Password:** `ElephantCactus456!`
+
+---
+
+## Project Structure
+
+The project consists of three main files:
+
+* `password-generator.py`: The main Python script containing the password generation logic and the Tkinter GUI setup.
+* `noun_list_1000.txt`: A simple text file containing a large list of nouns used for creating the memorable passwords.
+* `README.md`: This file, providing project information and instructions.
+
