@@ -32,6 +32,22 @@ def genPassword():
     return password
 
 
+def strengthCheck(password):
+    length = len(password)
+    has_upper = any(c.isupper() for c in password)
+    has_lower = any(c.islower() for c in password)
+    has_digit = any(c.isdigit() for c in password)
+    has_special = any(c in string.punctuation for c in password)
+
+    score = sum([has_upper, has_lower, has_digit, has_special])
+
+    if length >= 12 and score == 4:
+        return "Strong"
+    elif length >= 8 and score >= 3:
+        return "Medium"
+    else:
+        return "Weak"
+    
 # Tkinter GUI Functions
 
 def show_password():
@@ -46,12 +62,20 @@ def copy_to_clipboard():
         root.clipboard_append(password)
         messagebox.showinfo("Copied!", "Password copied to clipboard!")
 
+def check_strength():
+    pwd = strength_entry.get()
+    if not pwd:
+        messagebox.showwarning("No password", "Please enter a password to check.")
+        return
+    result = strengthCheck(pwd)
+    messagebox.showinfo("Password strength", f"Strength: {result}")
+
 
 # Tkinter GUI Setup
 
 root = tk.Tk()
 root.title("Random Password Generator")
-root.geometry("500x200")
+root.geometry("500x500")
 root.resizable(False, False)
 root.configure(bg="#f0f0f0")
 
@@ -59,7 +83,7 @@ root.configure(bg="#f0f0f0")
 frame = tk.Frame(root, bg="#ffffff", padx=20, pady=20)
 frame.pack(expand=True)
 
-# Label
+# Click to get password Label
 label = tk.Label(frame, text="Click the button to generate a password:", 
                  font=("Helvetica", 14), bg="#ffffff")
 label.grid(row=0, column=0, columnspan=2, pady=(0, 15))
@@ -77,6 +101,20 @@ generate_button.grid(row=2, column=0, pady=15, sticky="ew", padx=(0, 10))
 copy_button = tk.Button(frame, text="Copy to Clipboard", font=("Helvetica", 12, "bold"),
                         bg="#2196F3", fg="white", padx=10, pady=5, command=copy_to_clipboard)
 copy_button.grid(row=2, column=1, pady=15, sticky="ew", padx=(10, 0))
+
+#Password strength label
+label = tk.Label(frame, text="Enter password to check strength:", 
+                 font=("Helvetica", 14), bg="#ffffff")
+label.grid(row=3, column=0, columnspan=2, pady=(0, 15))
+
+#Password strength checker
+strength_entry = tk.Entry(frame, width=40, font=("Courier", 12))
+strength_entry.grid(row=4, column=0, columnspan=2, pady=5)
+
+#Password strength button
+check_button = tk.Button(frame, text="Check Strength", font=("Helvetica", 12, "bold"),
+                         bg="#FF9800", fg="white", padx=10, pady=5, command=check_strength)
+check_button.grid(row=5, column=0, columnspan=2, pady=(5, 0), sticky="ew")
 
 # Expand columns equally
 frame.grid_columnconfigure(0, weight=1)
