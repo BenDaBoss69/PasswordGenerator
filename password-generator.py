@@ -108,7 +108,7 @@ label = tk.Label(frame, text="Enter password to check strength:",
 label.grid(row=3, column=0, columnspan=2, pady=(0, 15))
 
 #Password strength checker
-strength_entry = tk.Entry(frame, width=40, font=("Courier", 12))
+strength_entry = tk.Entry(frame, width=40, font=("Courier", 12), show="*")
 strength_entry.grid(row=4, column=0, columnspan=2, pady=5)
 
 #Password strength button
