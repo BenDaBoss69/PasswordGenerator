@@ -11,6 +11,23 @@ A simple and secure-by-design password generator built using **Python** and the 
 * **One-Click Generation:** Quickly generate a new password with the "Generate Password" button.
 * **Copy to Clipboard:** Instantly copy the generated password to your clipboard using the "Copy to Clipboard" button.
 * **Unique Noun Selection:** Ensures the two selected nouns are not duplicates in the generated password.
+* **Password Strength Checker:** Enter any password (including generated ones) into the provided field and click "Check Strength" to get an immediate strength classification.
+
+---
+
+## Password Strength Checker
+
+A new UI control and helper function evaluate password strength and display the result.
+
+How to use:
+* Type or paste a password into the "Enter password to check strength" field.
+* Click "Check Strength".
+* A dialog shows one of: `Strong`, `Medium`, or `Weak`.
+
+Strength rules:
+* Strong — length >= 12 and contains uppercase, lowercase, digit, and special character.
+* Medium — length >= 8 and meets at least three of the four character-type requirements.
+* Weak — everything else.
 
 ---
 
